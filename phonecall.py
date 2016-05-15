@@ -21,11 +21,10 @@ Which plant would you you like to talk to?
 def get_plant_choices():
     plant_choices = ''
     for keys in response.keys():
-        if str.isdigit(str(keys)[-1]):
-            plant_choices = response[keys]["name"] + ',' + plant_choices #Concatenate keys
+        plant_choices = response[keys]["name"] + ',' + plant_choices #Concatenate keys
     return str(plant_choices).rstrip(',') #Remove trailing comma
 
-plant_names = str(get_plant_choices())
+plant_names = get_plant_choices()
 
 selected_plant = ask("Please say the name of the following options: " + plant_names, {
          "choices": plant_names,
@@ -34,8 +33,7 @@ selected_plant = ask("Please say the name of the following options: " + plant_na
          "onBadChoice": lambda event : say('''
                                          I'm sorry, I didn't understand that.
                                          Please repeat the name of the plant you wish to talk to.
-                                         ''' })
-
+                                         ''' )})
 
 say('''
 You requested information for: {}.
@@ -54,5 +52,4 @@ Warning: Temperature is 10% below the suggested threshold.
 )
 
 hangup()
-
 
