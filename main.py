@@ -16,5 +16,7 @@ def grabfromdatabase(request):
     url = 'https://blinding-inferno-9101.firebaseio.com/'+plantname[request]+'.json'
     response = requests.get(url)
     return response.content
-
-print grabfromdatabase("Lassie")
+demoflower = {"name": "bob"}
+flower = grabfromdatabase("Lassie")
+newflower = eval(flower)
+print newflower["humidity"]
