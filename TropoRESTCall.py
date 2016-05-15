@@ -1,19 +1,13 @@
-import urllib
-import urllib2
+<?php
 
-def grabfromdatabase(request):
-    plantname = {"Beatrice":'Plant1',
-                 "Lassie":'Plant2',
-                 "Paul":'Plant3'
-                 }
-    url = 'https://blinding-inferno-9101.firebaseio.com/'+plantname[request]+'.json'
-    req = urllib2.Request(url)
-    response = urllib2.urlopen(req)
-    answer = response.read().decode("utf-8")
-    response.close()
-    return answer
-    
-flower = grabfromdatabase("Lassie")
-wait(3000)
-newflower = eval(flower)
-say(newflower["humidity"])
+$curl_handle=curl_init(); 
+
+curl_setopt($curl_handle,CURLOPT_URL,'https://blinding-inferno-9101.firebaseio.com/Plant1.json');
+curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2); 
+curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+
+$result = curl_exec($curl_handle); 
+say($result);
+curl_close($curl_handle);
+
+?>
