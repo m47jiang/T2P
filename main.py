@@ -1,6 +1,6 @@
 from threading import Event
 import time
-from serveraction import dumptodatabase
+from serveraction import dumptodatabase, textinfo, grabfromdatabase
 
 from timer import MyThread
 
@@ -17,15 +17,16 @@ def inserttodatabase(payload):
 def retrievefromdatabase(parameter, value):
     return collection.find_one({parameter:value})
 '''
+starttime = time.time()
+
 def main():
-    stopFlag = Event()
-    msgThread = MyThread(stopFlag)
-    msgThread.start()
-    # this will stop the timer
     while(getdata()!=False):
-        getdata({})
-        time.sleep(1)
-    stopFlag.set(getdata()==False)
+        if((time.time()-starttime)%1==0):
+            print ("Getting data...")
+            getdata({})
+        elif((time.time()-starttime)%5==0):
+            print ("Texting end user...")
+            textinfo(grabfromdatabase)
 
 
 def getdata(jsonobj):
