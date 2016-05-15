@@ -1,2 +1,2 @@
 # T2P
-Talk to plant because, why not?
+Talk to plants because, why not?
