@@ -1,5 +1,4 @@
 from urllib.request import Request, urlopen
-import getch
 import requests
 import json
 
@@ -13,10 +12,14 @@ def setValue(temperature, humidity):
 
 temperature = 20
 humidity = 60
-while():
-    key = ord(getch())
-    if key == 72:
-        temperature=temperature+1;
-    elif key == 80:
-        temperature=temperature-1;
+while(True):
+    key = input("temp(q for decrease, w for increase), humidity(e for decrease, r for increase) ")
+    if key == 'w':
+        temperature=temperature+1
+    elif key == 'q':
+        temperature=temperature-1
+    elif key == 'e':
+        humidity = humidity - 1
+    elif key == 'r':
+        humidity = humidity + 1
     setValue(temperature, humidity)
